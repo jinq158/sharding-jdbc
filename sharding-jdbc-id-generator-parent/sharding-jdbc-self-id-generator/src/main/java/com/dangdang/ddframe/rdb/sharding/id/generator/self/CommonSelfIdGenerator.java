@@ -138,9 +138,9 @@ public class CommonSelfIdGenerator implements IdGenerator {
             sequence = 0;
         }
         lastTime = time;
-        if (log.isDebugEnabled()) {
-            log.debug("{}-{}-{}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date(lastTime)), workerId, sequence);
-        }
+//        if (log.isDebugEnabled()) {
+//            log.debug("{}-{}-{}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date(lastTime)), workerId, sequence);
+//        }
         return ((time - SJDBC_EPOCH) << TIMESTAMP_LEFT_SHIFT_BITS) | (workerId << WORKER_ID_LEFT_SHIFT_BITS) | sequence;
     }
     

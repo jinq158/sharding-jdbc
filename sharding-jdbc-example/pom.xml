@@ -39,10 +39,16 @@
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
+         <mssql_jdbc_version>6.1.0.jre7</mssql_jdbc_version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
     </properties>
     
     <dependencies>
+     <dependency>
+		<groupId>com.microsoft.sqlserver</groupId>
+		<artifactId>mssql-jdbc</artifactId>
+		<version>${mssql_jdbc_version}</version>
+	</dependency>
         <dependency>
             <groupId>com.dangdang</groupId>
             <artifactId>sharding-jdbc-core</artifactId>

@@ -15,25 +15,22 @@
  * </p>
  */
 
-package com.dangdang.ddframe.rdb.sharding.hint;
+package com.dangdang.ddframe.rdb.sharding.parser.visitor.basic.sqlserver;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
+import com.google.common.base.Optional;
 
 /**
- * 分片键.
- *
+ * MySQL的UPDATE语句访问器.
+ * 
+ * @author gaohongtao
  * @author zhangliang
  */
-// TODO 重构到合适的包
-@RequiredArgsConstructor
-@EqualsAndHashCode
-public final class ShardingKey {
+public class SQLServerUpdateVisitor extends AbstractSQLServerVistor{
     
-    private final String logicTable;
-    
-    @Getter
-    private final String shardingColumn;
+//    @Override
+//    public boolean visit(final MySqlUpdateStatement x) {
+//        getParseContext().setCurrentTable(x.getTableName().toString(), Optional.<String>absent());
+//        return super.visit(x);
+//    }
 }
