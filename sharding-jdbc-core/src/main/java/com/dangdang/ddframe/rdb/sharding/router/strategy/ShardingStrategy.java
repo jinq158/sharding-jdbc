@@ -53,6 +53,7 @@ public class ShardingStrategy {
      */
     public Collection<String> doStaticSharding(final SQLStatementType sqlStatementType, final Collection<String> availableTargetNames, final Collection<ShardingValue<?>> shardingValues) {
         if (shardingValues.isEmpty()) {
+        	//sqlserver这里校验失败了,怎么回事
             Preconditions.checkState(!isInsertMultiple(sqlStatementType, availableTargetNames), "INSERT statement should contain sharding value.");
             return availableTargetNames;
         }

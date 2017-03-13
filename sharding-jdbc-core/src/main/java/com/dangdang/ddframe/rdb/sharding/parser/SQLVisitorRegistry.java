@@ -82,20 +82,20 @@ public final class SQLVisitorRegistry {
         UPDATE_REGISTRY.put(DatabaseType.H2, MySQLUpdateVisitor.class);
         UPDATE_REGISTRY.put(DatabaseType.MySQL, MySQLUpdateVisitor.class);
         // TODO 其他数据库先使用MySQL, 只能使用标准SQL
-        INSERT_REGISTRY.put(DatabaseType.Oracle, MySQLUpdateVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.SQLServer, SQLServerUpdateVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.DB2, MySQLUpdateVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.PostgreSQL, MySQLUpdateVisitor.class);
+        UPDATE_REGISTRY.put(DatabaseType.Oracle, MySQLUpdateVisitor.class);
+        UPDATE_REGISTRY.put(DatabaseType.SQLServer, SQLServerUpdateVisitor.class);
+        UPDATE_REGISTRY.put(DatabaseType.DB2, MySQLUpdateVisitor.class);
+        UPDATE_REGISTRY.put(DatabaseType.PostgreSQL, MySQLUpdateVisitor.class);
     }
     
     private static void registerDeleteVistor() {
         DELETE_REGISTRY.put(DatabaseType.H2, MySQLDeleteVisitor.class);
         DELETE_REGISTRY.put(DatabaseType.MySQL, MySQLDeleteVisitor.class);
         // TODO 其他数据库先使用MySQL, 只能使用标准SQL
-        INSERT_REGISTRY.put(DatabaseType.Oracle, MySQLDeleteVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.SQLServer, SQLServerDeleteVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.DB2, MySQLDeleteVisitor.class);
-        INSERT_REGISTRY.put(DatabaseType.PostgreSQL, MySQLDeleteVisitor.class);
+        DELETE_REGISTRY.put(DatabaseType.Oracle, MySQLDeleteVisitor.class);
+        DELETE_REGISTRY.put(DatabaseType.SQLServer, MySQLDeleteVisitor.class);
+        DELETE_REGISTRY.put(DatabaseType.DB2, MySQLDeleteVisitor.class);
+        DELETE_REGISTRY.put(DatabaseType.PostgreSQL, MySQLDeleteVisitor.class);
     }
     
     /**

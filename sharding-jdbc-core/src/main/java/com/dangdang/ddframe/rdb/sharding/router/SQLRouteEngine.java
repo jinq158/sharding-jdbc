@@ -81,7 +81,7 @@ public final class SQLRouteEngine {
     }
     
     SQLParsedResult parseSQL(final String logicSql, final List<Object> parameters) {
-        Context context = MetricsContext.start("Parse SQL");
+        Context context = MetricsContext.start("Parse SQL");//sqlserver这里是null
         SQLParsedResult result = SQLParserFactory.create(databaseType, logicSql, parameters, shardingRule).parse();
         MetricsContext.stop(context);
         return result;

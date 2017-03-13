@@ -64,6 +64,7 @@ public final class SQLParseEngine {
         visitor.setParameters(parameters);
         sqlVisitor.getParseContext().setShardingRule(shardingRule);
         sqlStatement.accept(visitor);
+        log.debug("Parser visitor="+visitor);
         SQLParsedResult result = sqlVisitor.getParseContext().getParsedResult();
         if (sqlVisitor.getParseContext().isHasOrCondition()) {
             new OrParser(sqlStatement, visitor).fillConditionContext(result);
