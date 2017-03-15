@@ -32,9 +32,9 @@ public final class SpringNamespaceWithAssignedDataSourceMain {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("META-INF/applicationContextWithAssignedDataSource.xml");
         OrderService service =  applicationContext.getBean(OrderService.class);
         service.insert();
-//        service.select();
-//        service.delete();
-//        service.select();
+        service.select();
+        service.delete();
+        service.select();
     
         ConfigService configService =  applicationContext.getBean(ConfigService.class);
 //        configService.select();

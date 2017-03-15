@@ -30,4 +30,6 @@ public interface OrderRepository {
     int deleteAll();
     
     List<Order> selectAll();
+    List<Order> selectTop1();
+    
 }

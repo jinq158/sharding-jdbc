@@ -41,6 +41,17 @@ public class OrderService {
     public void select() {
         System.out.println(orderRepository.selectAll());
     }
+    public void insert(){
+    	
+    }
+    
+    @Transactional(readOnly = true)
+    public void selectTop1() {
+    	System.out.println("print top1***************count= "+orderRepository.selectTop1().size());
+    	for(Order o:orderRepository.selectTop1()){
+    		System.out.println(o);
+    	}
+    }
     
     public void clear() {
         orderRepository.deleteAll();

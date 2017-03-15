@@ -33,16 +33,16 @@ public class Main {
         OrderService orderService = applicationContext.getBean(OrderService.class);
         orderService.clear();
         orderService.fooService();
+//        orderService.select();
+//    
+//        //[order_id: , user_id: 10, status: UPDATED, order_id: , user_id: 11, status: UPDATED]
+//        orderService.clear();
+//        try {
+//            orderService.fooServiceWithFailure();
+//        } catch (final IllegalArgumentException e) {
+//            System.out.println("roll back");
+//        }
         orderService.select();
-    
-        //[order_id: , user_id: 10, status: UPDATED, order_id: , user_id: 11, status: UPDATED]
-        orderService.clear();
-        try {
-            orderService.fooServiceWithFailure();
-        } catch (final IllegalArgumentException e) {
-            System.out.println("roll back");
-        }
-        //[]
-        orderService.select();
+        orderService.selectTop1();
     }
 }

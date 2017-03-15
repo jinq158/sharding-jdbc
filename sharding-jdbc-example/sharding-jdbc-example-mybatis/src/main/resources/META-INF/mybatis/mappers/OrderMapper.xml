@@ -4,7 +4,7 @@
     <resultMap id="baseResultMap" type="com.dangdang.ddframe.rdb.sharding.example.jdbc.entity.Order">
         <result column="order_id" property="orderId" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
-        <result column="status" property="status" jdbcType="CLOB"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
     </resultMap>
     
     <sql id="baseColumnList">
@@ -14,8 +14,8 @@
     </sql>
     
     <insert id="insert" keyProperty="orderId" useGeneratedKeys="true" >
-        INSERT INTO `t_order`(
-        `user_id`,`status`
+        INSERT INTO t_order(
+        user_id,status
         )
         VALUES (
         #{userId,jdbcType=INTEGER},
@@ -24,9 +24,9 @@
     </insert>
     
     <update id="update">
-        UPDATE `t_order`
-        SET `status` = 'UPDATED'
-        WHERE `user_id` in
+        UPDATE t_order
+        SET status = 'UPDATED'
+        WHERE user_id in
         <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
             #{item}
         </foreach>
@@ -34,7 +34,7 @@
     
     
     <delete id="deleteAll">
-        DELETE FROM `t_order`
+        DELETE FROM t_order
     </delete>
     
     
@@ -42,5 +42,11 @@
         SELECT
         <include refid="baseColumnList"/>
         FROM `t_order`
+    </select>
+     <select id="selectTop1" resultMap="baseResultMap">
+        <!-- SELECT top 10
+        <include refid="baseColumnList"/>
+        FROM t_order order by order_id -->
+        select top 5 row_number() over (order by order_id) rownum ,<include refid="baseColumnList"/> from t_order  order by user_id
     </select>
 </mapper>

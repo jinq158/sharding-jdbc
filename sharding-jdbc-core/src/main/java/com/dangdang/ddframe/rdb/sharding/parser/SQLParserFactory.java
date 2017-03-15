@@ -62,6 +62,7 @@ public final class SQLParserFactory {
         log.debug("Logic SQL: {}, {}", sql, parameters);
         SQLStatement sqlStatement = getSQLStatementParser(databaseType, sql).parseStatement();
         log.trace("Get {} SQL Statement", sqlStatement.getClass().getName());
+
         return new SQLParseEngine(sqlStatement, parameters, getSQLVisitor(databaseType, sqlStatement), shardingRule);
     }
     

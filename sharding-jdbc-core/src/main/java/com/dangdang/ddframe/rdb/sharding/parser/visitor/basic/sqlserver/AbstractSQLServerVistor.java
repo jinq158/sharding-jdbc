@@ -10,6 +10,7 @@ import com.alibaba.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.alibaba.druid.sql.ast.expr.SQLInListExpr;
 import com.alibaba.druid.sql.ast.expr.SQLPropertyExpr;
 import com.alibaba.druid.sql.ast.expr.SQLVariantRefExpr;
+import com.alibaba.druid.sql.ast.statement.SQLDeleteStatement;
 import com.alibaba.druid.sql.ast.statement.SQLExprTableSource;
 import com.alibaba.druid.sql.ast.statement.SQLSelectItem;
 import com.alibaba.druid.sql.dialect.sqlserver.visitor.SQLServerOutputVisitor;
@@ -174,6 +175,19 @@ public class AbstractSQLServerVistor extends SQLServerOutputVisitor implements S
 	    public boolean visit(final SQLBetweenExpr x) {
 	        parseContext.addCondition(x.getTestExpr(), BinaryOperator.BETWEEN, Arrays.asList(x.getBeginExpr(), x.getEndExpr()), getDatabaseType(), getParameters());
 	        return super.visit(x);
+	    }
+	    
+	    @Override
+	    public boolean visit(SQLDeleteStatement x) {
+	    	 print("DELETE FROM ");
+	         x.getTableSource().accept(this);
+	         if (x.getWhere() != null) {
+	             print(" WHERE ");
+	             x.getWhere().setParent(x);
+	             x.getWhere().accept(this);
+	         }
+
+	         return false;
 	    }
 
 }

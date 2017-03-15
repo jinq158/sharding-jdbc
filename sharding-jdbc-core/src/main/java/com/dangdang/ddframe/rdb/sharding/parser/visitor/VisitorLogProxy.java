@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 
 import com.dangdang.ddframe.rdb.sharding.exception.ShardingJdbcException;
 import com.dangdang.ddframe.rdb.sharding.parser.visitor.basic.mysql.AbstractMySQLVisitor;
+import com.dangdang.ddframe.rdb.sharding.parser.visitor.basic.sqlserver.AbstractSQLServerVistor;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -77,11 +78,20 @@ public final class VisitorLogProxy {
             }
             Object result = methodProxy.invokeSuper(enhancedObject, arguments);
             if (isPrintable(method)) {
-                AbstractMySQLVisitor visitor = (AbstractMySQLVisitor) enhancedObject;
-                log.trace("{}endVisit node: {}", hierarchyIndex, arguments[0].getClass());
-                log.trace("{}endVisit result: {}", hierarchyIndex, visitor.getParseContext().getParsedResult());
-                log.trace("{}endVisit condition: {}", hierarchyIndex, visitor.getParseContext().getCurrentConditionContext());
-                log.trace("{}endVisit SQL: {}", hierarchyIndex, visitor.getSQLBuilder());
+            	if(enhancedObject instanceof AbstractMySQLVisitor){
+	                AbstractMySQLVisitor visitor = (AbstractMySQLVisitor) enhancedObject;
+	                log.trace("{}endVisit node: {}", hierarchyIndex, arguments[0].getClass());
+	                log.trace("{}endVisit result: {}", hierarchyIndex, visitor.getParseContext().getParsedResult());
+	                log.trace("{}endVisit condition: {}", hierarchyIndex, visitor.getParseContext().getCurrentConditionContext());
+	                log.trace("{}endVisit SQL: {}", hierarchyIndex, visitor.getSQLBuilder());
+            	}
+            	else if(enhancedObject instanceof AbstractSQLServerVistor){
+            		AbstractSQLServerVistor visitor = (AbstractSQLServerVistor) enhancedObject;
+                    log.trace("{}endVisit node: {}", hierarchyIndex, arguments[0].getClass());
+                    log.trace("{}endVisit result: {}", hierarchyIndex, visitor.getParseContext().getParsedResult());
+                    log.trace("{}endVisit condition: {}", hierarchyIndex, visitor.getParseContext().getCurrentConditionContext());
+                    log.trace("{}endVisit SQL: {}", hierarchyIndex, visitor.getSQLBuilder());
+            	}
                 hierarchyOut();
             }
             return result;
